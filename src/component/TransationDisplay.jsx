@@ -14,7 +14,7 @@ const TransationDisplay = () => {
             transactionsArray.push({ id, name, value, desc });
         }
 
-        setTransactions(transactionsArray);
+        setTransactions(transactionsArray.reverse());
     }, []);
 
     return (
