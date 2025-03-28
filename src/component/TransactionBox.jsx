@@ -5,22 +5,22 @@ const TransactionForm = () => {
 
 return (
     <FormContainer>
-        <Title>Effectuer une Transaction</Title>
+        <Title>Make a transaction</Title>
         
         <InputContainer>
-        <InputLabel>Nom de la transaction</InputLabel>
+        <InputLabel>Transaction name</InputLabel>
         <Input
             type="text"
-            placeholder="Nom de la transaction"
+            placeholder="Transaction name"
             className="transName"
         />
         </InputContainer>
 
         <InputContainer>
-        <InputLabel>Montant</InputLabel>
+        <InputLabel>Value</InputLabel>
         <Input
             type="number"
-            placeholder="Montant de la transaction"
+            placeholder="Transaction value"
             className="transValue"
         />
         </InputContainer>
@@ -29,12 +29,12 @@ return (
         <InputLabel>Description</InputLabel>
         <Input
             type="text"
-            placeholder="Description de la transaction"
+            placeholder="Transaction description"
             className="transDesc"
         />
         </InputContainer>
 
-        <Button onClick={setToLocalStorage}>Effectuer la Transaction</Button>
+        <Button onClick={setToLocalStorage}>Make the transaction</Button>
     </FormContainer>
 );
 };
