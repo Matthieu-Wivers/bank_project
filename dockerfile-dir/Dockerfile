@@ -1,28 +1,16 @@
-# Étape 1 : Construire l'image de production
-FROM node:18 AS build
+# Étape 1 : Construire l'application avec Node
+FROM node:18-alpine as build
 
 WORKDIR /app
 
-# Copie les fichiers de package
+# Copier le package.json et package-lock.json (seulement ces fichiers)
 COPY package*.json ./
 
-# Installe les dépendances
-RUN npm install
+# Installer les dépendances (en utilisant le cache de Docker si les fichiers package.json n'ont pas changé)
+RUN npm install --frozen-lockfile
 
-# Copie tout le code source
+# Copier tout le reste des fichiers du projet
 COPY . .
 
-# Crée le build de production
+# Créer le build de production
 RUN npm run build
-
-# Étape 2 : Créer l'image pour l'exécution
-FROM nginx:alpine
-
-# Copie le build dans le dossier de Nginx
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# Expose le port 80 (par défaut utilisé par Nginx)
-EXPOSE 80
-
-# Démarre Nginx
-CMD ["nginx", "-g", "daemon off;"]
